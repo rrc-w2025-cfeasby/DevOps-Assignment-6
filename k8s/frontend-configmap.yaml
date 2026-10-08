@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frontend-html
+  namespace: ymb
+data:
+  index.html: |
+    <!DOCTYPE html>
+    <html>
+    <head><title>YMB Banking</title></head>
+    <body>
+      <h1>Welcome to YMB Banking</h1>
+      <a href="/register.html">Register</a>
+      <a href="/login.html">Login</a>
+      <a href="/deposit.html">Deposit</a>
+      <a href="/withdraw.html">Withdraw</a>
+      <a href="/dashboard.html">Dashboard</a>
+    </body>
+    </html>
+
+  register.html: |
+    <!DOCTYPE html>
+    <html>
+    <head><title>Register - YMB Banking</title></head>
+    <body>
+      <h1>YMB Registration</h1>
+      <form>
+        <label>Username:</label><input type="text">
+        <label>Password:</label><input type="password">
+        <button type="submit">Register</button>
+      </form>
+    </body>
+    </html>
+
+  deposit.html: |
+    <html><body><h1>Deposit</h1></body></html>
+
+  withdraw.html: |
+    <html><body><h1>Withdraw</h1></body></html>
+
+  dashboard.html: |
+    <html><body><h1>Dashboard</h1></body></html>
+
+  login.html: |
+    <html><body><h1>Login</h1></body></html>

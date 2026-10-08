@@ -1,0 +1,38 @@
+name: YMB Sprint3 CI/CD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: Login to Docker Hub
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - name: Build & push backend
+      uses: docker/build-push-action@v5
+      with:
+        context: ./backend
+        push: true
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/ymb-backend:latest
+
+    - name: Build & push transactions
+      uses: docker/build-push-action@v5
+      with:
+        context: ./transactions
+        push: true
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/ymb-transactions:latest

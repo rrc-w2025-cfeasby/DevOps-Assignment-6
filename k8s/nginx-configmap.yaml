@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-config
+  namespace: ymb
+data:
+  nginx.conf: |
+    events {}
+
+    http {
+        server {
+            listen 80;
+
+            location / {
+                root /usr/share/nginx/html;
+                try_files $uri $uri/ =404;
+            }
+
+            location /api/ {
+                proxy_pass http://backend:5000;
+            }
+
+            location /api/transactions {
+                proxy_pass http://transactions:5001;
+            }
+        }
+    }

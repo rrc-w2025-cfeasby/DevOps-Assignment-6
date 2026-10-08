@@ -1,0 +1,47 @@
+services:
+  frontend:
+    build: ./frontend
+    container_name: assignment_5-frontend
+    networks:
+      - ymb-net
+
+  backend:
+    build: ./backend
+    container_name: assignment_5-backend
+    networks:
+      - ymb-net
+
+  transactions:
+    build: ./transactions
+    container_name: assignment_5-transactions
+    networks:
+      - ymb-net
+
+  mongo:
+    image: mongo:6
+    container_name: assignment_5-mongo
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - ymb-net
+
+  nginx:
+    image: nginx:latest
+    container_name: assignment_5-nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./frontend:/usr/share/nginx/html
+    ports:
+      - "80:80"
+    depends_on:
+      - frontend
+      - backend
+      - transactions
+    networks:
+      - ymb-net
+
+volumes:
+  mongo_data:
+
+networks:
+  ymb-net:

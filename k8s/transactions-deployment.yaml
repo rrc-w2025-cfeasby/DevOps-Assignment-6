@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: transactions
+  namespace: ymb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: transactions
+  template:
+    metadata:
+      labels:
+        app: transactions
+    spec:
+      containers:
+      - name: transactions
+        image: draghujon/ymb-transactions:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5001

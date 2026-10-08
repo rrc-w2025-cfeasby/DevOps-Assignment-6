@@ -1,0 +1,1 @@
+RepoTags: [nginx:latest] Created: 2026-10-06T01:19:56.439860774Z OS: linux ExposedPorts: map[80/tcp:{}]
