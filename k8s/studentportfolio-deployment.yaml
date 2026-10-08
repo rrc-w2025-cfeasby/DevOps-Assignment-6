@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: studentportfolio
+  namespace: ymb
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: studentportfolio
+  template:
+    metadata:
+      labels:
+        app: studentportfolio
+    spec:
+      containers:
+        - name: studentportfolio
+          image: rrcw2025.azurecr.io/studentportfolio:latest
+          ports:
+            - containerPort: 3000
