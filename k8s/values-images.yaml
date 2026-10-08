@@ -1,5 +1,5 @@
 backend:
-  image: "<your-dockerhub-username>/ymb-backend:latest"
+  image: "draghujon/ymb-backend:latest"
 
 transactions:
-  image: "<your-dockerhub-username>/ymb-transactions:latest"
+  image: "draghujon/ymb-transactions:latest"
